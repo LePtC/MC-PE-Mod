@@ -16,4 +16,6 @@ function: actively show the current coordinate and orientation, create a cuboid 
 - → : teleport to the input coordinate
 - ♥/♠ : switch between survival/creative mode
 
+![example](https://github.com/LePtC/MC-PE-Mod/blob/master/2014-09-17-12-14-29.png)
+
 notice: if point 1 to point 2 are too far, the game might crash
