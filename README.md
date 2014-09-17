@@ -12,7 +12,10 @@ function: actively show the current coordinate and orientation, create a cuboid 
 - ② : set the block under your foot as point 2
 - ■ : create cuboid from point 1 to point 2
 - □ : create holo cuboid from point 1 to point 2
+- ⊙ : create holo sphere, point 1 as center, point 2 is on its surface
+- Y : water funnel, point 1 as center, point 2 as ended height
 - × : delete all items in cuboid from point 1 to point 2
+- #  : actively delete items within the 3×3×3 box around you
 - → : teleport to the input coordinate
 - ♥/♠ : switch between survival/creative mode
 

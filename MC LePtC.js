@@ -6,6 +6,8 @@ var pe,px,py,pz,yaw;
 var p1x=0,p1y=0,p1z=0;
 var p2x=0,p2y=0,p2z=0;
 
+var bodydes = -1;
+
 var btn = null;
 var openWindow = null;
 var simpleGUI = null;
@@ -138,7 +140,8 @@ try{
 		"\nx2:"+p2x+"\ny2:"+p2y+"\nz2:"+p2z);
 	title.setLayoutParams(textParams);
 	layout.addView(title); */
-
+	
+	// 设脚下点为 p1
 	var button = new android.widget.Button(ctx);
 	button.setText("①");
 	button.setTextSize(20);
@@ -149,7 +152,8 @@ try{
 		p1z=pz;
 	}}));
 	layout.addView(button);
-
+	
+	// 设脚下点为 p2
 	var button = new android.widget.Button(ctx);
 	button.setText("②");
 	button.setTextSize(20);
@@ -160,7 +164,8 @@ try{
 		p2z=pz;
 	}}));
 	layout.addView(button);
-
+	
+	// 以手持物品造长方体
 	var button = new android.widget.Button(ctx);
 	button.setText("■");
 	button.setTextSize(20);
@@ -175,7 +180,8 @@ try{
 		}}}
 	}}));
 	layout.addView(button);
-
+	
+	// 空心长方体
 	var button = new android.widget.Button(ctx);
 	button.setText("□");
 	button.setTextSize(20);
@@ -195,7 +201,64 @@ try{
 		}}}
 	}}));
 	layout.addView(button);
-
+	
+	// 以 p1 为圆心到 p2 画球
+	var button = new android.widget.Button(ctx);
+	button.setText("⊙");
+	button.setTextSize(20);
+	button.setOnClickListener(new android.view.View.OnClickListener({
+	onClick:function(mp){
+		var i,j,k,temp;
+		var r=parseInt(Math.sqrt(
+			(p1x-p2x)*(p1x-p2x)+(p1y-p2y)*(p1y-p2y)+(p1z-p2x)*(p1z-p2z)));
+		for(i=-r;i<=r;i++){
+		for(j=-r;j<=r;j++){
+		for(k=-r;k<=r;k++){
+			temp = i*i+j*j+k*k; 
+			if(temp<r*r && temp>(r-1)*(r-1)){
+				setTile(p1x+i,p1y+j,p1z+k,Player.getCarriedItem(),
+					Player.getCarriedItemData());
+			}
+		}}}
+	}}));
+	layout.addView(button);
+	
+	// 以 p1 为中心建水漏斗，漏至 p2 的高度，自动化农场和刷怪塔常用
+	var button = new android.widget.Button(ctx);
+	button.setText("Y");
+	button.setTextSize(20);
+	button.setOnClickListener(new android.view.View.OnClickListener({
+	onClick:function(mp){
+		var i,j,k;
+		for(i=-5;i<=5;i++){
+		for(j=-5;j<=5;j++){
+			setTile(p1x+i,p1y,p1z+j,Player.getCarriedItem(),
+				Player.getCarriedItemData());
+			if(i==-5||i==5||j==-5||j==5){
+				setTile(p1x+i,p1y+1,p1z+j,Player.getCarriedItem(),
+					Player.getCarriedItemData());
+			}
+		}}
+		setTile(p1x,p1y,p1z,0);
+		
+		setTile(p1x+4,p1y+1,p1z+4,8,0); // 静止的水
+		setTile(p1x+4,p1y+1,p1z-4,8,0);
+		setTile(p1x-4,p1y+1,p1z+4,8,0);
+		setTile(p1x-4,p1y+1,p1z-4,8,0);
+		
+		for(k=p1y-1;k>=p2y;k--){ // 漏斗颈
+			for(i=-1;i<=1;i++){
+			for(j=-1;j<=1;j++){
+				setTile(p1x+i,k,p1z+j,Player.getCarriedItem(),
+						Player.getCarriedItemData());
+			}}
+			setTile(p1x,k,p1z,0);
+		}
+		
+	}}));
+	layout.addView(button);
+	
+	// 删除长方体内任何方块
 	var button = new android.widget.Button(ctx);
 	button.setText("×");
 	button.setTextSize(20);
@@ -209,6 +272,16 @@ try{
 		}}}
 	}}));
 	layout.addView(button);
+	
+	// 随人物开洞
+	var button = new android.widget.Button(ctx);
+	button.setText("#");
+	button.setTextSize(20);
+	button.setOnClickListener(new android.view.View.OnClickListener({
+	onClick:function(mp){
+		bodydes*=-1;
+	}}));
+	layout.addView(button);
 
 	var button = new android.widget.Button(ctx);
 	button.setText("→");
@@ -218,7 +291,8 @@ try{
 		inputtp();
 	}}));
 	layout.addView(button);
-
+	
+	// 切换生存创造
 	var button = new android.widget.Button(ctx);
 	if(Level.getGameMode()==0) // 生存
 	{
@@ -343,6 +417,15 @@ function modTick()
 	yaw = parseInt(getYaw()%360);
 	if(yaw<-179){yaw += 360;}
 	if(yaw>181){yaw -= 360;}
+	
+	if(bodydes==1){
+		var i,j,k;
+		for(i=px-1;i<=px+1;i++){
+		for(j=py-1;j<=py+1;j++){
+		for(k=pz-1;k<=pz+1;k++){
+			setTile(i,j,k,0);
+		}}}
+	}
 }
 
 function window(){
