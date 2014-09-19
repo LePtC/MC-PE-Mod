@@ -2,6 +2,8 @@
 // and qsefthukol(啦啦菌)'s map http://pan.baidu.com/share/link?shareid=815720780&uk=3829338695
 // only tested on Android Minecraft PE 0.9.5
 
+var tick=0,sec=0,min=0,sectemp=0;
+
 var pe,px,py,pz,yaw;
 var p1x=0,p1y=0,p1z=0;
 var p2x=0,p2y=0,p2z=0;
@@ -68,15 +70,49 @@ function leaveGame()
 	}}));
 }
 
-/* function procCmd(cmd)
+function procCmd(cmd)
 {
 	var Data = cmd.split(" ");
-	if(Data[0]=="GUI")
+	
+	if(Data[0]=="item")
 	{
-		window();
-		clientMessage("已恢复GUI");
+	if(Level.getGameMode()==0)
+	{
+		if(Data.length==4)
+		{
+			i1=Data[1],i2=Data[2],i3=Data[3];
+			addItemInventory(i1,i2,i3);
+			clientMessage("获得物品id :"+i1+":"+i3+" 共"+i2+"个");
+		}
+		if(Data.length==3)
+		{
+			i1=Data[1],i2=Data[2];
+			addItemInventory(i1,i2);
+			clientMessage("获得物品id :"+i1+"共"+i2+"个");
+		}
+		if(Data.length==2)
+		{
+			i1=Data[1];
+			addItemInventory(i1,64);
+			clientMessage("获得物品id :"+i1+"共64个");
+		}
+	}else{
+		if(Data.length==2)
+		{
+			i1=Data[1]
+			Entity.setCarriedItem(Player.getEntity(),i1,1)
+			clientMessage("已更改手中物品为 id :"+i1)
+		}
+		if(Data.length==3)
+		{
+			i1=Data[1]
+			i2=Data[2]
+			Entity.setCarriedItem(Player.getEntity(),i1,1,i2)
+			clientMessage("已更改手中物品为 id :"+i1+"特殊值 :"+i2)
+		}
 	}
-} */
+	}
+}
 
 /* function useItem(x,y,z,ii,bi)
 {
@@ -150,6 +186,8 @@ try{
 		p1x=px;
 		p1y=py-2;
 		p1z=pz;
+		setTile(p1x,p1y,p1z,Player.getCarriedItem(),
+				Player.getCarriedItemData());
 	}}));
 	layout.addView(button);
 	
@@ -162,6 +200,8 @@ try{
 		p2x=px;
 		p2y=py-2;
 		p2z=pz;
+		setTile(p2x,p2y,p2z,Player.getCarriedItem(),
+				Player.getCarriedItemData());
 	}}));
 	layout.addView(button);
 	
@@ -172,11 +212,12 @@ try{
 	button.setOnClickListener(new android.view.View.OnClickListener({
 	onClick:function(mp){
 		var i,j,k;
+		var item=Player.getCarriedItem();
+		
 		for(i=Math.min(p1x,p2x);i<=Math.max(p1x,p2x);i++){
 		for(j=Math.min(p1y,p2y);j<=Math.max(p1y,p2y);j++){
 		for(k=Math.min(p1z,p2z);k<=Math.max(p1z,p2z);k++){
-			setTile(i,j,k,Player.getCarriedItem(),
-				Player.getCarriedItemData());
+			setTile(i,j,k,item,0);
 		}}}
 	}}));
 	layout.addView(button);
@@ -188,11 +229,12 @@ try{
 	button.setOnClickListener(new android.view.View.OnClickListener({
 	onClick:function(mp){
 		var i,j,k;
+		var item=Player.getCarriedItem();
+		
 		for(i=Math.min(p1x,p2x);i<=Math.max(p1x,p2x);i++){
 		for(j=Math.min(p1y,p2y);j<=Math.max(p1y,p2y);j++){
 		for(k=Math.min(p1z,p2z);k<=Math.max(p1z,p2z);k++){
-			setTile(i,j,k,Player.getCarriedItem(),
-				Player.getCarriedItemData());
+			setTile(i,j,k,item,0);
 		}}}
 		for(i=Math.min(p1x,p2x)+1;i<=Math.max(p1x,p2x)-1;i++){
 		for(j=Math.min(p1y,p2y)+1;j<=Math.max(p1y,p2y)-1;j++){
@@ -208,53 +250,7 @@ try{
 	button.setTextSize(20);
 	button.setOnClickListener(new android.view.View.OnClickListener({
 	onClick:function(mp){
-		var i,j,k,temp;
-		var r=parseInt(Math.sqrt(
-			(p1x-p2x)*(p1x-p2x)+(p1y-p2y)*(p1y-p2y)+(p1z-p2x)*(p1z-p2z)));
-		for(i=-r;i<=r;i++){
-		for(j=-r;j<=r;j++){
-		for(k=-r;k<=r;k++){
-			temp = i*i+j*j+k*k; 
-			if(temp<r*r && temp>(r-1)*(r-1)){
-				setTile(p1x+i,p1y+j,p1z+k,Player.getCarriedItem(),
-					Player.getCarriedItemData());
-			}
-		}}}
-	}}));
-	layout.addView(button);
-	
-	// 以 p1 为中心建水漏斗，漏至 p2 的高度，自动化农场和刷怪塔常用
-	var button = new android.widget.Button(ctx);
-	button.setText("Y");
-	button.setTextSize(20);
-	button.setOnClickListener(new android.view.View.OnClickListener({
-	onClick:function(mp){
-		var i,j,k;
-		for(i=-5;i<=5;i++){
-		for(j=-5;j<=5;j++){
-			setTile(p1x+i,p1y,p1z+j,Player.getCarriedItem(),
-				Player.getCarriedItemData());
-			if(i==-5||i==5||j==-5||j==5){
-				setTile(p1x+i,p1y+1,p1z+j,Player.getCarriedItem(),
-					Player.getCarriedItemData());
-			}
-		}}
-		setTile(p1x,p1y,p1z,0);
-		
-		setTile(p1x+4,p1y+1,p1z+4,8,0); // 静止的水
-		setTile(p1x+4,p1y+1,p1z-4,8,0);
-		setTile(p1x-4,p1y+1,p1z+4,8,0);
-		setTile(p1x-4,p1y+1,p1z-4,8,0);
-		
-		for(k=p1y-1;k>=p2y;k--){ // 漏斗颈
-			for(i=-1;i<=1;i++){
-			for(j=-1;j<=1;j++){
-				setTile(p1x+i,k,p1z+j,Player.getCarriedItem(),
-						Player.getCarriedItemData());
-			}}
-			setTile(p1x,k,p1z,0);
-		}
-		
+		buildsphere();
 	}}));
 	layout.addView(button);
 	
@@ -307,15 +303,37 @@ try{
 		{
 			Level.setGameMode(0);
 			button.setText("♥");
-			Level.setTime(8000);
+			Level.setTime(10000); // 凌晨
 		}else{
 			Level.setGameMode(1);
 			button.setText("♠");
-			Level.setTime(13000);
+			Level.setTime(5000); // 黄昏
 		}
 	}}));
 	layout.addView(button);
-
+	
+	// 以下为常用复杂建筑
+	
+	// 以 p1 为中心建水漏斗，漏至 p2 的高度，自动化农场和刷怪塔常用
+	var button = new android.widget.Button(ctx);
+	button.setText("Y");
+	button.setTextSize(20);
+	button.setOnClickListener(new android.view.View.OnClickListener({
+	onClick:function(mp){
+		buildfunnel();
+	}}));
+	layout.addView(button);
+	
+	// 哆啦A梦旅馆球，以 p1 为中心，p2 为地面
+	var button = new android.widget.Button(ctx);
+	button.setText("♀");
+	button.setTextSize(20);
+	button.setOnClickListener(new android.view.View.OnClickListener({
+	onClick:function(mp){
+		buildhotel();
+	}}));
+	layout.addView(button);
+	
 	var mlayout=makeMenu(ctx,menu,layout);
 	menu.setContentView(mlayout);
 	// menu.setWidth(ctx.getWindowManager().getDefaultDisplay().getWidth());
@@ -331,7 +349,8 @@ catch(err){
 }
 
 
-function inputtp(){
+function inputtp()
+{
 	var number=android.text.InputType.TYPE_CLASS_NUMBER;
 	var mpLayout=new android.widget.LinearLayout(ctx);
 try{
@@ -393,9 +412,10 @@ run: function()
 	p.setTextAlign(android.graphics.Paint.Align.LEFT);
 	p.setARGB(255,255,255,255);
 
-	canvasTemp.drawText("pe("+px+","+py+","+pz+";"+yaw+"°)"+
+	canvasTemp.drawText("["+min+":"+sec+
+		"] pe("+px+","+py+","+pz+";"+yaw+"°)"+
 		" p1("+p1x+","+p1y+","+p1z+")"+
-		" p2("+p2x+","+p2y+","+p2z+")",5,40,p);
+		" p2("+p2x+","+p2y+","+p2z+") ",5,40,p);
 
 	var drawable = new android.graphics.drawable.BitmapDrawable(newb);
 	xdt.setBackgroundDrawable(drawable);
@@ -407,8 +427,14 @@ run: function()
 }
 
 
+// every 20 ticks = 1 second
 function modTick()
 {
+	tick++;
+	sectemp=parseInt(tick/20);
+	min=parseInt(sectemp/60);
+	sec=sectemp%60;
+	
 	pe=Player.getEntity();
 	px=parseInt(getPlayerX());
 	py=parseInt(getPlayerY());
@@ -481,4 +507,101 @@ function dismissmenu()
 		if(btn!=null)btn.dismiss();btn=null
 		if(openWindow!=null)openWindow.dismiss();openWindow=null
 	}}));
+}
+
+
+function buildsphere()
+{
+	var i,j,k,temp;
+	var r=parseInt(Math.sqrt(
+		(p1x-p2x)*(p1x-p2x)+(p1y-p2y)*(p1y-p2y)+(p1z-p2z)*(p1z-p2z)));
+	var item=Player.getCarriedItem();
+	var data=Player.getCarriedItemData();
+	
+	if(r>15){
+		clientMessage("半径过大！ (r="+r+")");
+	}else{
+		clientMessage("半径 r="+r);
+		
+		for(i=-r;i<=r;i++){
+		for(j=-r;j<=r;j++){
+		for(k=-r;k<=r;k++){
+			temp=i*i+j*j+k*k;
+			if(temp<=r*r && temp>=(r-1)*(r-1)){
+				setTile(p1x+i,p1y+j,p1z+k,item,data);
+			}
+		}}}
+		
+		toast("球体完成");
+	}
+}
+
+function buildfunnel()
+{
+	var i,j,k;
+	var item=Player.getCarriedItem();
+	
+	for(i=-5;i<=5;i++){
+	for(j=-5;j<=5;j++){
+		setTile(p1x+i,p1y,p1z+j,item,0);
+		if(i==-5||i==5||j==-5||j==5){
+			setTile(p1x+i,p1y+1,p1z+j,item,0);
+		}
+	}}
+	setTile(p1x,p1y,p1z,0);
+
+	setTile(p1x+4,p1y+1,p1z+4,8,0); // 静止的水
+	setTile(p1x+4,p1y+1,p1z-4,8,0);
+	setTile(p1x-4,p1y+1,p1z+4,8,0);
+	setTile(p1x-4,p1y+1,p1z-4,8,0);
+
+	for(k=p1y-1;k>=p2y;k--){ // 漏斗颈
+		for(i=-1;i<=1;i++){
+		for(j=-1;j<=1;j++){
+			setTile(p1x+i,k,p1z+j,item,0);
+		}}
+		setTile(p1x,k,p1z,0);
+	}
+}
+
+function buildhotel()
+{
+	var i,j,k,temp;
+	var r=8;
+	var item=Player.getCarriedItem();
+	
+	for(i=-r;i<=r;i++){
+	for(j=-r;j<0;j++){
+	for(k=-r;k<=r;k++){
+	
+		temp = i*i+j*j+k*k; 
+		if(temp<=r*r && temp>=(r-1)*(r-1)){
+			setTile(p1x+i,p1y+j,p1z+k,item,0);
+			setTile(p1x+i,p1y-j,p1z+k,20,0); // 玻璃做顶
+		}
+	}}};
+	
+	for(i=-r;i<=r;i++){
+	for(k=-r;k<=r;k++){
+	
+		temp = i*i+k*k; 
+		if(temp<=(r+2)*(r+2)){ // 中间楼板
+			setTile(p1x+i,p1y,p1z+k,item,0);
+			if(temp>r*(r+1)){
+				setTile(p1x+i,p1y+1,p1z+k,85,0); // 栅栏
+			}
+		}
+		if(temp<=60){ // 下方楼板
+			setTile(p1x+i,p1y-4,p1z+k,item,0);
+		}
+	}}
+	for(k=p1y;k>=p2y;k--){ // 棒棒糖杆
+	
+		for(i=-1;i<=1;i++){
+		for(j=-1;j<=1;j++){
+			setTile(p1x+i,k,p1z+j,item,0);
+		}}
+		setTile(p1x,k,p1z,0);
+	}
+	
 }
