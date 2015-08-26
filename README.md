@@ -1,5 +1,13 @@
-﻿Minecraft PE LePtC Mod (alpha)
+﻿Minecraft PE LePtC Mod
 ======
+
+## 独立简版信息提示（2015.08.25）
+
+![example](https://github.com/LePtC/MC-PE-Mod/blob/master/20150825232725.png)
+
+
+
+## MC LePtC gui（2014.09.17）
 
 only tested on Android Minecraft PE 0.9.5
 
