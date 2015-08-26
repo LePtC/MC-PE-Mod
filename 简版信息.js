@@ -17,7 +17,7 @@ var title = new android.widget.TextView(ctx);
 function newLevel()
 {
   print("MC PE info mod loaded");
-  Player.setCanFly(1); // P2 矢量操作（生存飞行）
+  // Player.setCanFly(1); // P2 矢量操作（生存飞行）
 
   ctx = com.mojang.minecraftpe.MainActivity.currentMainActivity.get();
   ctx.runOnUiThread(new java.lang.Runnable({
@@ -102,7 +102,7 @@ function modTick()
   if(yaw<-179){yaw += 360;}
   if(yaw>181){yaw -= 360;}
 
-  Player.setHealth(20); // 保持满血, 测试用
+  // Player.setHealth(20); // 保持满血, 测试用
 }
 
 
