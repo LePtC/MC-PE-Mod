@@ -1,5 +1,5 @@
-﻿// LePtC 的 Minecraft PE javascript mod 模版
-// P1 空间移动
+﻿// LePtC 的 Minecraft PE 空间移动 mod
+// https://github.com/LePtC/MC-PE-Mod
 
 // 模版参考 https://github.com/BeATz-UnKNoWN/ModPE_Scripts/wiki/ModPE-Script-Templates
 // 教程参考 https://github.com/Connor4898/ModPE-Scripts/wiki/ModPE-Scripts-Functions-List#text-functions-1

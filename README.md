@@ -1,7 +1,49 @@
 ﻿Minecraft PE LePtC Mod
 ======
 
+欢迎收看萌狸君之特大不务正业系列：Minecraft PE 版 javascript mod 开发项目。这个项目是萌狸君玩 PE 版 Minecraft 时自己写的一些好玩的 javascript mod ，目前只有文字稿和截图，以后有时间再录视频吧…
+
+
+## 火狐魔杖（2015.08.26）
+
+火狐魔杖是一个全能型工具：
+
+- 攻击怪物：将怪物扔到上方 30 格然后摔落，对于抗摔耐火怪物不能造成伤害。
+- 攻击动物：由于其附加火焰伤害，动物摔落后直接获得熟肉。
+- 即刻炼矿：每挖一个矿物方块，直接获得 3 个锭。
+- 精准采集：除基岩和矿物外，对所有方块均为精准采集。
+
+TODO：以后可能还会加入更多功能。
+
+
+合成表：火把 + 金锭 + 木棍
+
+![example](https://github.com/LePtC/MC-PE-Mod/blob/master/20150826172509.png)
+
+（注：暂时用的是金剑的贴图，为了退出能保存物品，id 也是用金剑的 id，所以如果你合成金剑的话也是一样的效果…）
+
+攻击怪物
+
+![example](https://github.com/LePtC/MC-PE-Mod/blob/master/20150826172920.png)
+![example](https://github.com/LePtC/MC-PE-Mod/blob/master/20150826172922.png)
+![example](https://github.com/LePtC/MC-PE-Mod/blob/master/20150826172924.png)
+![example](https://github.com/LePtC/MC-PE-Mod/blob/master/20150826172925.png)
+
+精准采集
+
+![example](https://github.com/LePtC/MC-PE-Mod/blob/master/20150826173848.png)
+
+
+
 ## 空间移动 Level5（2015.08.25）
+
+- ↑↑ ：向前跳跃 25 格
+- ↑ ：向前跳跃 10 格
+- ↓ ：向后跳跃 10 格
+（以上均为自动探测地面的高度）
+- 瞬 ：瞬移到敌人背后
+
+TODO：输入坐标来传送。
 
 跳跃前
 
@@ -16,14 +58,14 @@
 
 ![example](https://github.com/LePtC/MC-PE-Mod/blob/master/20150825232725.png)
 
+（生存飞行和固定血量也附在这个模版里面）
 
 
 ## MC LePtC gui（2014.09.17）
 
-only tested on Android Minecraft PE 0.9.5
+TODO：建筑类 mod 以后再更新…
 
-modified from [MP430488's work](http://pan.baidu.com/s/1gduwH5h#path=%252F)
-and [qsefthukol(啦啦菌)'s map](http://pan.baidu.com/share/link?shareid=815720780&uk=3829338695)
+only tested on Android Minecraft PE 0.9.5
 
 function: actively show the current coordinate and orientation, create a cuboid of blocks by two points with the material that you are holding.
 

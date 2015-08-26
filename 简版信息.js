@@ -1,4 +1,6 @@
 ﻿// LePtC 简版信息提示
+// https://github.com/LePtC/MC-PE-Mod
+
 // modified from MP430488's work http://pan.baidu.com/s/1gduwH5h#path=%252F
 // and qsefthukol(啦啦菌)'s map http://pan.baidu.com/share/link?shareid=815720780&uk=3829338695
 
