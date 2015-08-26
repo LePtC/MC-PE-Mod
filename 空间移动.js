@@ -6,10 +6,9 @@
 
 
 var GUI;
-var tick = 0;
 
 function newLevel(){
-  print("javascript mod 已加载");
+  print("空间移动 mod 已加载");
 
   var ctx = com.mojang.minecraftpe.MainActivity.currentMainActivity.get();
   ctx.runOnUiThread(new java.lang.Runnable({ run: function(){

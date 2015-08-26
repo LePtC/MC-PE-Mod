@@ -55,6 +55,11 @@
 ![example](https://github.com/LePtC/MC-PE-Mod/blob/master/20150826214338.png)
 
 
+火狐尾巴：
+
+- 拿在手上时能限制降落速度，免疫摔落伤害
+
+
 TODO: 集齐全套火狐工具可合成火狐魔杖，具有全部功能和无限耐久 =ω=
 
 
@@ -77,11 +82,24 @@ TODO：输入坐标来传送
 ![example](https://github.com/LePtC/MC-PE-Mod/blob/master/20150826000830.png)
 
 
+## 矢量操作 Level5
+
+- 跳 ：加跳跃提升 40 级的 buff
+- 时刻免疫任何摔落伤害
+- 开启允许生存飞行
+
+TODO：伤害反射不造怎么做…
+
+![example](https://github.com/LePtC/MC-PE-Mod/blob/master/20150826235654.png)
+
+
+
+
 ## 独立简版信息提示（2015.08.25）
 
 ![example](https://github.com/LePtC/MC-PE-Mod/blob/master/20150825232725.png)
 
-（生存飞行和固定血量也附在这个模版里面）
+
 
 ## 独立简版指令
 
