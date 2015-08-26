@@ -29,7 +29,7 @@
 
 合成表：火把 + 金锭 + 木棍
 
-![example](https://github.com/LePtC/MC-PE-Mod/blob/master/20150826172509.png)
+![example](https://github.com/LePtC/MC-PE-Mod/blob/master/20150826213610.png)
 
 （注：暂时用的是金剑的贴图，为了退出能保存物品，id 也是用金剑的 id，所以如果你合成金剑的话也是一样的效果…）
 
@@ -48,9 +48,11 @@
 
 合成表：火把 + 金锭 + 木棍
 
+![example](https://github.com/LePtC/MC-PE-Mod/blob/master/20150826213615.png)
+
 精准采集
 
-![example](https://github.com/LePtC/MC-PE-Mod/blob/master/20150826173848.png)
+![example](https://github.com/LePtC/MC-PE-Mod/blob/master/20150826214338.png)
 
 
 TODO: 集齐全套火狐工具可合成火狐魔杖，具有全部功能和无限耐久 =ω=
