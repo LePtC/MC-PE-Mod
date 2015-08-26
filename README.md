@@ -55,12 +55,20 @@
 ![example](https://github.com/LePtC/MC-PE-Mod/blob/master/20150826214338.png)
 
 
+火狐斧：
+
+- 快速砍树：点树干一次，砍 8×8×16 范围内的整棵树
+
+
 火狐尾巴：
 
 - 拿在手上时能限制降落速度，免疫摔落伤害
 
+合成表：目前就用羽毛吧…
+
 
 TODO: 集齐全套火狐工具可合成火狐魔杖，具有全部功能和无限耐久 =ω=
+
 
 
 ## 空间移动 Level5（2015.08.25）
@@ -80,6 +88,7 @@ TODO：输入坐标来传送
 跳跃后
 
 ![example](https://github.com/LePtC/MC-PE-Mod/blob/master/20150826000830.png)
+
 
 
 ## 矢量操作 Level5
