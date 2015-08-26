@@ -93,7 +93,7 @@ function jump(distance){
   var pz = getPlayerZ()+distance*Math.cos(theta);
 
   var groundy = 254; // 255 为 PE 版最大高度
-  while(getTile(px,groundy,pz) == 0){groundy--;} // 向下探该处地面的高度
+  while(groundy>3 && getTile(px,groundy,pz) == 0){groundy--;} // 向下探该处地面的高度
   // 以防卡地里，前后左右也检测一下（但有一定几率会瞬移得太高然后摔一下）
   // if(getTile(px+1,groundy,pz) != 0){groundy+=1}
   // if(getTile(px-1,groundy,pz) != 0){groundy+=1}

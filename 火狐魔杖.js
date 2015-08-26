@@ -36,41 +36,41 @@ function attackHook(attacker,victim) {
 
 
 function useItem(x, y, z, itemId, blockId, side) {
-if(itemId==283) {
-  Level.setTile(x,y,z,0);
-  Level.playSound(getPlayerX(),getPlayerY(),getPlayerZ(),"step.cloth",30,25);
-  // 挖矿物则瞬间获得 3 个锭
-  switch(blockId) {
-    case 14: // 金
-      addItemInventory(266,3);
-      break;
-    case 15: // 铁
-      addItemInventory(265,3);
-      break;
-    case 16: // 煤
-      addItemInventory(263,5);
-      break;
-    case 21: // 青金石 351:4 好像不支持…
-      addItemInventory(22,1);
-      break;
-    case 56: // 钻石 要比正常挖来的多才行
-      addItemInventory(264,5);
-      break;
-    case 73: // 红石
-      addItemInventory(331,5);
-      break;
-    case 74: // 亮红石
-      addItemInventory(331,5);
-      break;
-    case 129: // 绿宝石
-      addItemInventory(133,5);
-      break;
-    case 7: // 基岩就别采了…
-      break;
-  // 除基岩和矿物外，对所有方块均为精准采集
-    default:
-      addItemInventory(blockId,1);
-  }
+// 基岩就别采了…
+if(itemId==283 && blockId != 7) {
+
+    Level.setTile(x,y,z,0);
+    Level.playSound(getPlayerX(),getPlayerY(),getPlayerZ(),"step.cloth",30,25);
+    // 挖矿物则瞬间获得 3 个锭
+    switch(blockId) {
+      case 14: // 金
+        addItemInventory(266,3);
+        break;
+      case 15: // 铁
+        addItemInventory(265,3);
+        break;
+      case 16: // 煤
+        addItemInventory(263,5);
+        break;
+      case 21: // 青金石 351:4 好像不支持…
+        addItemInventory(22,1);
+        break;
+      case 56: // 钻石 要比正常挖来的多才行
+        addItemInventory(264,5);
+        break;
+      case 73: // 红石
+        addItemInventory(331,5);
+        break;
+      case 74: // 亮红石
+        addItemInventory(331,5);
+        break;
+      case 129: // 绿宝石
+        addItemInventory(133,5);
+        break;
+    // 除基岩和矿物外，对所有方块均为精准采集
+      default:
+        addItemInventory(blockId,1);
+    }
 }}
 
 
