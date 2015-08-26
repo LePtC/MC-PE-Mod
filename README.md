@@ -4,6 +4,18 @@
 欢迎收看萌狸君之特大不务正业系列：Minecraft PE 版 javascript mod 开发项目。这个项目是萌狸君玩 PE 版 Minecraft 时自己写的一些好玩的 javascript mod ，目前只有文字稿和截图，以后有时间再录视频吧…
 
 
+
+![example](https://github.com/LePtC/MC-PE-Mod/blob/master/skin.png)
+
+（皮肤作者：[HelloSophiaLOLXD](http://mcpehub.com/skin/cute-fox-skin)）
+
+
+模版参考 https://github.com/BeATz-UnKNoWN/ModPE_Scripts/wiki/ModPE-Script-Templates
+
+教程参考 https://github.com/Connor4898/ModPE-Scripts/wiki/ModPE-Scripts-Functions-List#text-functions-1
+
+
+
 ## 火狐魔杖（2015.08.26）
 
 火狐魔杖是一个全能型工具：
