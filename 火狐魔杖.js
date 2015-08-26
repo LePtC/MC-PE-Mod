@@ -48,22 +48,22 @@ if(itemId==283) {
       addItemInventory(265,3);
       break;
     case 16: // 煤
-      addItemInventory(263,3);
+      addItemInventory(263,5);
       break;
     case 21: // 青金石 351:4 好像不支持…
       addItemInventory(22,1);
       break;
-    case 56: // 钻石
-      addItemInventory(264,3);
+    case 56: // 钻石 要比正常挖来的多才行
+      addItemInventory(264,5);
       break;
     case 73: // 红石
-      addItemInventory(331,3);
+      addItemInventory(331,5);
       break;
     case 74: // 亮红石
-      addItemInventory(331,3);
+      addItemInventory(331,5);
       break;
     case 129: // 绿宝石
-      addItemInventory(133,3);
+      addItemInventory(133,5);
       break;
     case 7: // 基岩就别采了…
       break;
