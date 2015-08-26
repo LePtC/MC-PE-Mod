@@ -9,12 +9,22 @@ function newLevel() {
   print("火狐魔杖 mod 已加载");
 
   // 暂时用金剑的贴图…
-  ModPE.setItem(283,"sword",3,"火狐魔杖");
+  ModPE.setItem(283,"sword",3,"火狐剑");
 
   // 暂时不知如何防止重复定义
   Item.addShapedRecipe(283, 1, 0, [
     " t ",
     " g ",
+    " s "
+    ],
+  ["t", 50, 0, "g", 266, 0, "s", 280, 0]);
+
+  ModPE.setItem(285,"pickaxe",3,"火狐镐");
+
+  // 暂时不知如何防止重复定义
+  Item.addShapedRecipe(285, 1, 0, [
+    "gtg",
+    " s ",
     " s "
     ],
   ["t", 50, 0, "g", 266, 0, "s", 280, 0]);
@@ -37,7 +47,7 @@ function attackHook(attacker,victim) {
 
 function useItem(x, y, z, itemId, blockId, side) {
 // 基岩就别采了…
-if(itemId==283 && blockId != 7) {
+if(itemId==285 && blockId != 7) {
 
     Level.setTile(x,y,z,0);
     Level.playSound(getPlayerX(),getPlayerY(),getPlayerZ(),"step.cloth",30,25);

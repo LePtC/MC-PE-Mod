@@ -53,6 +53,8 @@
 ![example](https://github.com/LePtC/MC-PE-Mod/blob/master/20150826173848.png)
 
 
+TODO: 集齐全套火狐工具可合成火狐魔杖，具有全部功能和无限耐久 =ω=
+
 
 ## 空间移动 Level5（2015.08.25）
 
